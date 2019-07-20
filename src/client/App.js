@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Link } from "react-router-dom";
 
-import Home from "./pages/Home";
+import Fromage from "./pages/Fromage";
 import Fromages from "./pages/Fromages";
 
 const App = () => (
@@ -9,16 +9,13 @@ const App = () => (
     <nav>
       <ul>
         <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/fromages">Fromages</Link>
+          <Link to="/">Fromages</Link>
         </li>
       </ul>
     </nav>
 
-    <Route path="/" exact component={Home} />
-    <Route path="/fromages" component={Fromages} />
+    <Route path="/" exact component={Fromages} />
+    <Route path="/:id" component={Fromage} />
   </div>
 );
 

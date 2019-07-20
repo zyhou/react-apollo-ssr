@@ -23,10 +23,13 @@
     "start:server": "cross-env BABEL_ENV=node babel-node src/server/index.js"
   },
   "dependencies": {
+    "apollo-boost": "^0.4.3",
     "core-js": "3",
     "express": "4.17.1",
+    "graphql": "^14.4.2",
     "prop-types": "15.7.2",
     "react": "16.8.6",
+    "react-apollo": "^2.5.8",
     "react-dom": "16.8.6",
     "react-router": "5.0.1",
     "react-router-dom": "5.0.1"
