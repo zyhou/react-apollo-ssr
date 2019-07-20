@@ -1,5 +1,7 @@
 # Minimal React Apollo SSR
 
+Fromages listing and view detail
+
 ## Features
 
 * React 16
@@ -15,3 +17,7 @@
 * make install
 * make start-server 
 * visit `http://localhost:3000`
+
+## API
+
+[GraphQl API, build with Apollo Server on CodeSandbox](https://codesandbox.io/s/fromage-graphql-api-ku0n6)
