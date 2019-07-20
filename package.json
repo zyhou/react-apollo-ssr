@@ -19,17 +19,20 @@
   },
   "homepage": "https://github.com/zyhou/react-apollo-ssr#readme",
   "scripts": {
-    "start:client": "webpack-dev-server --open",
-    "start:server": "cross-env BABEL_ENV=node babel-node src/server/index.js"
+    "start": "cross-env BABEL_ENV=node nodemon  --ignore './src/client/' --exec babel-node src/server/index.js"
   },
   "dependencies": {
-    "apollo-boost": "^0.4.3",
+    "apollo-boost": "0.4.3",
+    "apollo-cache-inmemory": "1.6.2",
+    "apollo-client": "2.6.3",
+    "apollo-link-http": "1.5.15",
     "core-js": "3",
     "express": "4.17.1",
-    "graphql": "^14.4.2",
+    "graphql": "14.4.2",
+    "node-fetch": "2.6.0",
     "prop-types": "15.7.2",
     "react": "16.8.6",
-    "react-apollo": "^2.5.8",
+    "react-apollo": "2.5.8",
     "react-dom": "16.8.6",
     "react-router": "5.0.1",
     "react-router-dom": "5.0.1"
@@ -42,10 +45,11 @@
     "@babel/preset-react": "7.0.0",
     "babel-loader": "8.0.6",
     "cross-env": "5.2.0",
-    "html-webpack-plugin": "3.2.0",
+    "nodemon": "1.19.1",
     "webpack": "4.36.1",
     "webpack-bundle-analyzer": "3.3.2",
     "webpack-cli": "3.3.6",
-    "webpack-dev-server": "3.7.2"
+    "webpack-dev-middleware": "3.7.0",
+    "webpack-hot-middleware": "2.25.0"
   }
 }

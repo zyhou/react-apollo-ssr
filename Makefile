@@ -4,11 +4,8 @@ help:
 install: ## Install dep
 	yarn
 
-start-server: ## Start server on 3000
-	yarn start:server
-
-start-client: ## Start client on 8080
-	yarn start:client
+start: ## Start server on 3000
+	yarn start
 
 clean: ## Clean dist directory
 	rm -rf dist/
