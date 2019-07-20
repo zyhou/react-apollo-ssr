@@ -1,15 +1,13 @@
 const webpack = require("webpack");
-const HtmlWebPackPlugin = require("html-webpack-plugin");
 const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
   .BundleAnalyzerPlugin;
 
 module.exports = {
-  entry: { app: "./src/client/index.js" },
+  entry: ["webpack-hot-middleware/client", "./src/client/index.js"],
   mode: "development",
   output: {
-    path: __dirname + "/dist/client",
-    publicPath: "/",
-    filename: "[name].js"
+    publicPath: "/dist",
+    filename: "bundle.js"
   },
   resolve: {
     extensions: ["*", ".js"]
@@ -30,10 +28,6 @@ module.exports = {
     new BundleAnalyzerPlugin({
       openAnalyzer: false,
       analyzerHost: "0.0.0.0"
-    }),
-    new HtmlWebPackPlugin({
-      template: "./src/client/index.html",
-      filename: "./index.html"
     })
   ]
 };
