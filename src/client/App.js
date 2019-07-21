@@ -1,8 +1,13 @@
 import React from "react";
 import { Route, Link } from "react-router-dom";
+import loadable from "@loadable/component";
 
-import Fromage from "./pages/Fromage";
-import Fromages from "./pages/Fromages";
+const Fromage = loadable(() =>
+  import(/* webpackChunkName: "Fromage" */ "./pages/Fromage")
+);
+const Fromages = loadable(() =>
+  import(/* webpackChunkName: "Fromages" */ "./pages/Fromages")
+);
 
 const App = () => (
   <div>

@@ -19,9 +19,11 @@
   },
   "homepage": "https://github.com/zyhou/react-apollo-ssr#readme",
   "scripts": {
-    "start": "cross-env BABEL_ENV=node nodemon  --ignore './src/client/' --exec babel-node src/server/index.js"
+    "start": "cross-env BABEL_ENV=node nodemon  --ignore './src/client/' --ignore './dist/' --exec babel-node src/server/index.js"
   },
   "dependencies": {
+    "@loadable/component": "5.10.2",
+    "@loadable/server": "5.10.2",
     "apollo-boost": "0.4.3",
     "apollo-cache-inmemory": "1.6.2",
     "apollo-client": "2.6.3",
@@ -44,6 +46,8 @@
     "@babel/node": "7.5.5",
     "@babel/preset-env": "7.5.5",
     "@babel/preset-react": "7.0.0",
+    "@loadable/babel-plugin": "5.10.0",
+    "@loadable/webpack-plugin": "5.7.1",
     "babel-loader": "8.0.6",
     "cross-env": "5.2.0",
     "nodemon": "1.19.1",

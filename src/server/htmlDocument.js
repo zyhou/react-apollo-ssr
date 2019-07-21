@@ -1,4 +1,4 @@
-export const getHtmlDocument = ({ html, apolloState, helmet }) => `
+export const getHtmlDocument = ({ html, apolloState, helmet, extractor }) => `
 <!DOCTYPE html>
 <html ${helmet.htmlAttributes.toString()}>
     <head>
@@ -16,7 +16,7 @@ export const getHtmlDocument = ({ html, apolloState, helmet }) => `
         <script type="text/javascript">window.__APOLLO_STATE__=${JSON.stringify(
           apolloState
         )}</script>
-        <script src="/dist/bundle.js"></script>
+        ${extractor.getScriptTags()}
     </body>
 </html>
 `;

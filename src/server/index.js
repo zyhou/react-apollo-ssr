@@ -8,6 +8,8 @@ import { createHttpLink } from "apollo-link-http";
 import { InMemoryCache } from "apollo-cache-inmemory";
 import fetch from "node-fetch";
 import { Helmet } from "react-helmet";
+import { ChunkExtractor } from "@loadable/server";
+import path from "path";
 
 import App from "../client/App";
 import { getHtmlDocument } from "./htmlDocument";
@@ -34,7 +36,10 @@ if (process.env.NODE_ENV !== "production") {
   app.use(
     webpackDevMiddleware(compiler, {
       publicPath: webpackConfig.output.publicPath,
-      serverSideRender: true
+      serverSideRender: true,
+      writeToDisk(filePath) {
+        return /loadable-stats/.test(filePath);
+      }
     })
   );
 
@@ -44,6 +49,8 @@ if (process.env.NODE_ENV !== "production") {
 app.use("/static", express.static("public"));
 
 app.get("*", async (req, res) => {
+  const statsFile = path.resolve(__dirname, "../../dist/loadable-stats.json");
+  const extractor = new ChunkExtractor({ statsFile });
   const context = {};
 
   const components = (
@@ -54,12 +61,19 @@ app.get("*", async (req, res) => {
     </ApolloProvider>
   );
 
-  await getDataFromTree(components);
+  const jsx = extractor.collectChunks(components);
+
+  await getDataFromTree(jsx);
   const apolloState = client.extract();
 
-  const html = ReactDOMServer.renderToString(components);
+  const html = ReactDOMServer.renderToString(jsx);
   const helmet = Helmet.renderStatic();
-  const htmlDocument = getHtmlDocument({ html, apolloState, helmet });
+  const htmlDocument = getHtmlDocument({
+    html,
+    apolloState,
+    helmet,
+    extractor
+  });
 
   return res.send(htmlDocument);
 });
