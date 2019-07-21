@@ -7,6 +7,7 @@ import ApolloClient from "apollo-client";
 import { createHttpLink } from "apollo-link-http";
 import { InMemoryCache } from "apollo-cache-inmemory";
 import fetch from "node-fetch";
+import { Helmet } from "react-helmet";
 
 import App from "../client/App";
 import { getHtmlDocument } from "./htmlDocument";
@@ -57,7 +58,8 @@ app.get("*", async (req, res) => {
   const apolloState = client.extract();
 
   const html = ReactDOMServer.renderToString(components);
-  const htmlDocument = getHtmlDocument(html, apolloState);
+  const helmet = Helmet.renderStatic();
+  const htmlDocument = getHtmlDocument({ html, apolloState, helmet });
 
   return res.send(htmlDocument);
 });
