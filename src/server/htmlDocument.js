@@ -1,12 +1,14 @@
-export const getHtmlDocument = (html, apolloState) => `
+export const getHtmlDocument = ({ html, apolloState, helmet }) => `
 <!DOCTYPE html>
-<html>
+<html ${helmet.htmlAttributes.toString()}>
     <head>
+        ${helmet.title.toString()}
         <meta charset="UTF-8" />
-        <title>Listing formages</title>
+        ${helmet.meta.toString()}
         <link rel="icon" href="/static/favicon.ico" />
+        ${helmet.link.toString()}
     </head>
-    <body>
+    <body ${helmet.bodyAttributes.toString()}>
         <div id="root">${html}</div>
         <noscript>
             You need to enable JavaScript to run this app.

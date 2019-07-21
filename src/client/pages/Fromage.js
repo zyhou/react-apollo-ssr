@@ -1,6 +1,7 @@
 import React from "react";
 import { Query } from "react-apollo";
 import { gql } from "apollo-boost";
+import { Helmet } from "react-helmet";
 
 const GET_FROMAGE = gql`
   query Fromage($id: String!) {
@@ -23,6 +24,9 @@ const Fromage = ({
 
       return (
         <div className="App">
+          <Helmet>
+            <title>{data.fromage.name} - Fromage</title>
+          </Helmet>
           <h2>{data.fromage.name}</h2>
         </div>
       );

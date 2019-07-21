@@ -8,6 +8,7 @@ Fromages listing and view detail
 * Babel 7
 * Webpack 4
 * React Router 5
+* React Helmet
 * HMR of webpack
 
 ## Installation
@@ -15,7 +16,7 @@ Fromages listing and view detail
 * `git clone git@github.com:zyhou/react-apollo-ssr.git`
 * cd react-apollo-ssr
 * make install
-* make start-server 
+* make start
 * visit `http://localhost:3000`
 
 ## API

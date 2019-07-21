@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Query } from "react-apollo";
 import { gql } from "apollo-boost";
+import { Helmet } from "react-helmet";
 
 const GET_FROMAGES = gql`
   {
@@ -21,6 +22,9 @@ const Fromages = () => (
 
       return (
         <div className="App">
+          <Helmet>
+            <title>Listing fromages</title>
+          </Helmet>
           <h2>{data.hello}</h2>
           <ol>
             {data.fromages.map(({ id, name }) => (
