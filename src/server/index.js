@@ -1,3 +1,4 @@
+import path from "path";
 import express from "express";
 import ReactDOMServer from "react-dom/server";
 import React from "react";
@@ -9,10 +10,12 @@ import { InMemoryCache } from "apollo-cache-inmemory";
 import fetch from "node-fetch";
 import { Helmet } from "react-helmet";
 import { ChunkExtractor } from "@loadable/server";
-import path from "path";
+import { CacheProvider } from "@emotion/core";
+import createEmotionServer from "create-emotion-server";
 
 import App from "../client/App";
 import { getHtmlDocument } from "./htmlDocument";
+import { cache } from "../shared/test";
 
 const app = express();
 const port = 3000;
@@ -52,13 +55,16 @@ app.get("*", async (req, res) => {
   const statsFile = path.resolve(__dirname, "../../dist/loadable-stats.json");
   const extractor = new ChunkExtractor({ statsFile });
   const context = {};
+  const { extractCritical } = createEmotionServer(cache);
 
   const components = (
-    <ApolloProvider client={client}>
-      <StaticRouter location={req.url} context={context}>
-        <App />
-      </StaticRouter>
-    </ApolloProvider>
+    <CacheProvider value={cache}>
+      <ApolloProvider client={client}>
+        <StaticRouter location={req.url} context={context}>
+          <App />
+        </StaticRouter>
+      </ApolloProvider>
+    </CacheProvider>
   );
 
   const jsx = extractor.collectChunks(components);
@@ -66,10 +72,15 @@ app.get("*", async (req, res) => {
   await getDataFromTree(jsx);
   const apolloState = client.extract();
 
-  const html = ReactDOMServer.renderToString(jsx);
+  const content = ReactDOMServer.renderToString(jsx);
   const helmet = Helmet.renderStatic();
+  const { html, css, ids } = extractCritical(content);
+  console.log({ css, ids });
+
   const htmlDocument = getHtmlDocument({
     html,
+    css,
+    serializedClassIds: JSON.stringify(ids),
     apolloState,
     helmet,
     extractor

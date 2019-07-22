@@ -11,12 +11,12 @@ const Fromages = loadable(() =>
   import(/* webpackChunkName: "Fromages" */ "./pages/Fromages")
 );
 
-const style = css`
-  color: hotpink;
+const style = theme => css`
+  color: ${theme.color};
 `;
 
 const App = () => (
-  <div css={style}>
+  <div css={theme => style(theme)}>
     <nav>
       <ul>
         <li>

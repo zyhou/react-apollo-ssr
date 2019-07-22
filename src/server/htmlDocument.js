@@ -1,4 +1,11 @@
-export const getHtmlDocument = ({ html, apolloState, helmet, extractor }) => `
+export const getHtmlDocument = ({
+  html,
+  css,
+  serializedClassIds,
+  apolloState,
+  helmet,
+  extractor
+}) => `
 <!DOCTYPE html>
 <html ${helmet.htmlAttributes.toString()}>
     <head>
@@ -7,6 +14,7 @@ export const getHtmlDocument = ({ html, apolloState, helmet, extractor }) => `
         ${helmet.meta.toString()}
         <link rel="icon" href="/static/favicon.ico" />
         ${helmet.link.toString()}
+        <style>${css}</style>
     </head>
     <body ${helmet.bodyAttributes.toString()}>
         <div id="root">${html}</div>
@@ -16,6 +24,9 @@ export const getHtmlDocument = ({ html, apolloState, helmet, extractor }) => `
         <script type="text/javascript">window.__APOLLO_STATE__=${JSON.stringify(
           apolloState
         )}</script>
+         <script>
+            window.__CLASS_IDS__ = ${serializedClassIds}
+        </script>
         ${extractor.getScriptTags()}
     </body>
 </html>
