@@ -22,12 +22,14 @@
     "start": "cross-env BABEL_ENV=node nodemon  --ignore './src/client/' --ignore './dist/' --exec babel-node src/server/index.js"
   },
   "dependencies": {
+    "@emotion/core": "10.0.14",
     "@loadable/component": "5.10.2",
     "@loadable/server": "5.10.2",
     "apollo-boost": "0.4.3",
     "apollo-cache-inmemory": "1.6.2",
     "apollo-client": "2.6.3",
     "apollo-link-http": "1.5.15",
+    "babel-plugin-emotion": "10.0.14",
     "core-js": "3",
     "express": "4.17.1",
     "graphql": "14.4.2",
