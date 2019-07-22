@@ -4,6 +4,8 @@ import { Query } from "react-apollo";
 import { gql } from "apollo-boost";
 import { Helmet } from "react-helmet";
 
+import Title from "../components/Title";
+
 const GET_FROMAGES = gql`
   {
     hello
@@ -26,6 +28,7 @@ const Fromages = () => (
             <title>Listing fromages</title>
           </Helmet>
           <h2>{data.hello}</h2>
+          {Title()}
           <ol>
             {data.fromages.map(({ id, name }) => (
               <li key={id}>

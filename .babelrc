@@ -27,5 +27,6 @@
         "modules": false
       }
     ]
-  ]
+  ],
+  "plugins": ["@loadable/babel-plugin"]
 }

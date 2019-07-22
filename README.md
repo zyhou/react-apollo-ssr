@@ -8,8 +8,10 @@ Fromages listing and view detail
 * Babel 7
 * Webpack 4
 * React Router 5
+* Apollo 2 (use `getDataFromTree` for server side rendering)
 * React Helmet
-* HMR of webpack
+* Loadable component
+* SSR hot reload with HMR webpack
 
 ## Installation
 
@@ -18,6 +20,7 @@ Fromages listing and view detail
 * make install
 * make start
 * visit `http://localhost:3000`
+* bundle analyzer on `http://localhost:8888`
 
 ## API
 

@@ -5,6 +5,7 @@ import { ApolloProvider } from "react-apollo";
 import { ApolloClient } from "apollo-client";
 import { InMemoryCache } from "apollo-cache-inmemory";
 import { createHttpLink } from "apollo-link-http";
+import { loadableReady } from "@loadable/component";
 
 import App from "./App";
 
@@ -13,14 +14,16 @@ const client = new ApolloClient({
   cache: new InMemoryCache().restore(window.__APOLLO_STATE__)
 });
 
-ReactDOM.render(
-  <ApolloProvider client={client}>
-    <Router>
-      <App />
-    </Router>
-  </ApolloProvider>,
-  document.getElementById("root")
-);
+loadableReady(() => {
+  ReactDOM.hydrate(
+    <ApolloProvider client={client}>
+      <Router>
+        <App />
+      </Router>
+    </ApolloProvider>,
+    document.getElementById("root")
+  );
+});
 
 if (module.hot) {
   module.hot.accept();
