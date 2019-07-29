@@ -20,7 +20,7 @@ const port = 3000;
 const client = new ApolloClient({
   ssrMode: true,
   link: createHttpLink({
-    uri: "https://ku0n6.sse.codesandbox.io/",
+    uri: "https://ku0n6-4000.sse.codesandbox.io/",
     fetch
   }),
   cache: new InMemoryCache()
