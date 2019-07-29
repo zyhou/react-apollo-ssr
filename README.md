@@ -28,4 +28,4 @@ Fromages listing and view detail
 [![Edit Fromage Graphql api](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/fromage-graphql-api-ku0n6?fontsize=14)
 
 [GraphQl API, build with Apollo Server on 4000 port](https://ku0n6-4000.sse.codesandbox.io/)   
-[REST API, build with micro on 3000 port](https://ku0n6-3000.sse.codesandbox.io/)
+[REST API, build with micro on 3000 port](https://ku0n6-3000.sse.codesandbox.io/fromages)
