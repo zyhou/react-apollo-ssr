@@ -8,6 +8,8 @@ const GET_FROMAGE = gql`
     fromage(id: $id) {
       id
       name
+      image
+      detailUrl
     }
   }
 `;
@@ -23,11 +25,31 @@ const Fromage = ({
       if (error) return <p>Error :(</p>;
 
       return (
-        <div className="App">
+        <div className="hero-body">
           <Helmet>
             <title>{data.fromage.name} - Fromage</title>
           </Helmet>
-          <h2>{data.fromage.name}</h2>
+          <div className="container has-text-centered">
+            <div className="columns is-vcentered">
+              <div className="column is-5">
+                <figure className="image is-4by3">
+                  <img src={data.fromage.image} alt={data.fromage.name} />
+                </figure>
+              </div>
+              <div className="column is-6 is-offset-1">
+                <h1 className="title is-2">{data.fromage.name}</h1>
+                <br />
+                <p className="has-text-centered">
+                  <a
+                    className="button is-medium is-info is-outlined"
+                    href={data.fromage.detailUrl}
+                  >
+                    Learn more
+                  </a>
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       );
     }}
