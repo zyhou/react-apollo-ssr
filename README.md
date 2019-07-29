@@ -11,6 +11,7 @@ Fromages listing and view detail
 * Apollo 2 (use `getDataFromTree` for server side rendering)
 * React Helmet
 * Loadable component
+* Emotion 10 with styled
 * SSR hot reload with HMR webpack
 
 ## Installation
