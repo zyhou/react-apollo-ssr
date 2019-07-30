@@ -1,14 +1,12 @@
 const path = require("path");
-const webpack = require("webpack");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const LoadablePlugin = require("@loadable/webpack-plugin");
-const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
-  .BundleAnalyzerPlugin;
 
 module.exports = {
-  entry: ["webpack-hot-middleware/client", "./src/client/index.js"],
-  mode: "development",
+  entry: ["./src/client/index.js"],
   output: {
-    publicPath: "/dist/",
+    path: path.join(__dirname, "dist/assets/"),
+    publicPath: "/assets/",
     filename: "[name].js"
   },
   resolve: {
@@ -36,12 +34,5 @@ module.exports = {
       }
     }
   },
-  plugins: [
-    new LoadablePlugin(),
-    new webpack.HotModuleReplacementPlugin(),
-    new BundleAnalyzerPlugin({
-      openAnalyzer: false,
-      analyzerHost: "0.0.0.0"
-    })
-  ]
+  plugins: [new CleanWebpackPlugin(), new LoadablePlugin()]
 };

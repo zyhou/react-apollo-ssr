@@ -28,7 +28,7 @@ const client = new ApolloClient({
 });
 
 if (process.env.NODE_ENV !== "production") {
-  const webpackConfig = require("../../webpack.config.js");
+  const webpackConfig = require("../../webpack.dev.js");
   const webpackDevMiddleware = require("webpack-dev-middleware");
   const webpackHotMiddleware = require("webpack-hot-middleware");
   const webpack = require("webpack");
@@ -47,10 +47,14 @@ if (process.env.NODE_ENV !== "production") {
   app.use(webpackHotMiddleware(compiler));
 }
 
+app.use("/assets", express.static("./dist/assets"));
 app.use("/static", express.static("public"));
 
 app.get("*", async (req, res) => {
-  const statsFile = path.resolve(__dirname, "../../dist/loadable-stats.json");
+  const statsFile = path.resolve(
+    __dirname,
+    "../../dist/assets/loadable-stats.json"
+  );
   const extractor = new ChunkExtractor({ statsFile });
   const context = {};
 
