@@ -1,7 +1,7 @@
 import React from "react";
 import { Link as LinkRouter } from "react-router-dom";
-import { Query } from "react-apollo";
-import { gql } from "apollo-boost";
+import gql from "graphql-tag";
+import { useQuery } from "@apollo/react-hooks";
 import { Helmet } from "react-helmet";
 import styled from "@emotion/styled";
 
@@ -35,54 +35,49 @@ const Link = styled.a`
   color: hsl(192, 17%, 99%);
 `;
 
-const Fromages = () => (
-  <Query query={GET_FROMAGES}>
-    {({ loading, error, data }) => {
-      if (loading) return <p>Loading...</p>;
-      if (error) return <p>Error :(</p>;
+const Fromages = () => {
+  const { loading, error, data } = useQuery(GET_FROMAGES);
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error :(</p>;
 
-      return (
-        <React.Fragment>
-          <Helmet>
-            <title>Listing fromages</title>
-          </Helmet>
-          <Box className="box">
-            <p className="has-text-centered">
-              <span className="tag is-primary">
-                <Link href="https://github.com/zyhou/react-apollo-ssr">
-                  Github
-                </Link>
-              </span>{" "}
-              {data.description}
-            </p>
-          </Box>
+  return (
+    <React.Fragment>
+      <Helmet>
+        <title>Listing fromages</title>
+      </Helmet>
+      <Box className="box">
+        <p className="has-text-centered">
+          <span className="tag is-primary">
+            <Link href="https://github.com/zyhou/react-apollo-ssr">Github</Link>
+          </span>{" "}
+          {data.description}
+        </p>
+      </Box>
 
-          <section className="container">
-            <div className="columns is-multiline">
-              {data.fromages.map(({ id, name, image }) => (
-                <div className="column is-4" key={id}>
-                  <LinkRouter to={`/${id}`}>
-                    <Card className="card">
-                      <div className="card-image">
-                        <figure className="image is-4by3">
-                          <img src={image} alt={name} />
-                        </figure>
-                      </div>
-                      <div className="card-content">
-                        <div className="content">
-                          <h4>{name}</h4>
-                        </div>
-                      </div>
-                    </Card>
-                  </LinkRouter>
-                </div>
-              ))}
+      <section className="container">
+        <div className="columns is-multiline">
+          {data.fromages.map(({ id, name, image }) => (
+            <div className="column is-4" key={id}>
+              <LinkRouter to={`/${id}`}>
+                <Card className="card">
+                  <div className="card-image">
+                    <figure className="image is-4by3">
+                      <img src={image} alt={name} />
+                    </figure>
+                  </div>
+                  <div className="card-content">
+                    <div className="content">
+                      <h4>{name}</h4>
+                    </div>
+                  </div>
+                </Card>
+              </LinkRouter>
             </div>
-          </section>
-        </React.Fragment>
-      );
-    }}
-  </Query>
-);
+          ))}
+        </div>
+      </section>
+    </React.Fragment>
+  );
+};
 
 export default Fromages;
