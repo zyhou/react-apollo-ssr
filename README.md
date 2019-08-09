@@ -8,7 +8,7 @@ Fromages listing and view detail
 * Babel 7
 * Webpack 4
 * React Router 5
-* Apollo 2 (use `getDataFromTree` for server side rendering)
+* Apollo 3 with hooks (use `getDataFromTree` for server side rendering)
 * React Helmet
 * Loadable component
 * Emotion 10 with styled
