@@ -22,7 +22,8 @@
     "start": "cross-env BABEL_ENV=node nodemon --exec babel-node -w src/server src/server/index.js",
     "build:client": "cross-env BABEL_ENV=production NODE_ENV=production webpack --config webpack.prod.js",
     "build:server": "cross-env BABEL_ENV=node NODE_ENV=production babel ./src -d dist",
-    "build:stats": "cross-env NODE_ENV=production BABEL_ENV=production webpack --config webpack.prod.js --profile --json > stats.json"
+    "build:stats": "cross-env NODE_ENV=production BABEL_ENV=production webpack --config webpack.prod.js --profile --json > stats.json",
+    "now-build": "yarn build:server && yarn build:client"
   },
   "dependencies": {
     "@apollo/react-hooks": "3.0.0",

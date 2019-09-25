@@ -1,0 +1,34 @@
+{
+  "name": "react-apollo-ssr",
+  "alias": ["react-apollo-ssr"],
+  "version": 2,
+  "public": true,
+  "env": {
+    "NODE_ENV": "production"
+  },
+  "build": {
+    "env": {
+      "NODE_ENV": "production"
+    }
+  },
+  "builds": [
+    {
+      "src": "server/**/*.js",
+      "use": "@now/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "^/static/(.*)",
+      "dest": "/static/$1"
+    },
+    {
+      "src": "^/favicon.ico",
+      "dest": "/favicon.ico"
+    },
+    {
+      "src": "/server/(.*)",
+      "dest": "/server/index.js"
+    }
+  ]
+}
