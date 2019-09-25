@@ -6,6 +6,12 @@
   "env": {
     "NODE_ENV": "production"
   },
+  "builds": [
+    {
+      "src": "dist/server/index.js",
+      "use": "@now/node"
+    }
+  ],
   "routes": [
     {
       "src": "^/static/(.*)",
