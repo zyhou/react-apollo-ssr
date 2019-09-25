@@ -8,7 +8,11 @@
   },
   "builds": [
     {
-      "src": "src/server/index.js",
+      "src": "package.json",
+      "use": "@now/static-build"
+    },
+    {
+      "src": "*.js",
       "use": "@now/node"
     }
   ],
