@@ -8,7 +8,7 @@
   },
   "builds": [
     {
-      "src": "dist/server/index.js",
+      "src": "src/server/index.js",
       "use": "@now/node"
     }
   ],
