@@ -7,5 +7,19 @@ install: ## Install dep
 start: ## Start server on 3000
 	yarn start
 
-clean: ## Clean dist directory
-	rm -rf dist/
+build: ## Build in dist directory
+	yarn build:server
+	yarn build:client
+
+build-bundle-stats:
+	yarn rimraf ./stats.json
+	yarn build:stats
+
+build-analyse-visualization: build-bundle-stats ## Launch bundle analyser in production mode
+	yarn webpack-bundle-analyzer stats.json ./dist
+
+server-start-production: ## Start server in production mode
+	yarn cross-env NODE_ENV=production node dist/server/index.js
+
+clear: ## Clean dist directory
+	yarn rimraf dist
