@@ -1,6 +1,6 @@
 # Minimal React Apollo SSR
 
-Fromages listing and view detail
+![Fromages listing and view detail](https://raw.githubusercontent.com/zyhou/react-apollo-ssr/master/doc/fromages-to-fromage.gif)
 
 ## Features
 
