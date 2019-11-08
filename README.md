@@ -1,5 +1,7 @@
 # Minimal React Apollo SSR
 
+[Article on Marmelab blog](https://marmelab.com/blog/2019/11/08/le-server-side-rendering-sans-framework-pas-si-dur.html)
+
 ![Fromages listing and view detail](https://raw.githubusercontent.com/zyhou/react-apollo-ssr/master/doc/fromages-to-fromage.gif)
 
 ## Features
